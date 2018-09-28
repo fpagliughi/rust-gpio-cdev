@@ -31,7 +31,7 @@ fn do_main(args: Cli) -> errors::Result<()> {
     // Get event handles for each line to monitor.
     let mut evt_handles: Vec<LineEventHandle> = args.lines.into_iter().map(|off| {
         let line = chip.get_line(off).unwrap();
-        line.event_handle(RequestFlags::INPUT, EventRequestFlags::BOTH_EDGES,
+        line.events(LineRequestFlags::INPUT, EventRequestFlags::BOTH_EDGES,
                           "monitor").unwrap()
     }).collect();
 
